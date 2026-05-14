@@ -71,12 +71,18 @@ def word_scramble():
         guess = input_check(chosen)
         if has_player_won(chosen, guess):
             print("You won!")
-            print(f"You guessed the word with {attempts} attempt(s) remaining.")
-            break
+            if attempts == 5:
+                print(f"You guessed the word on the first try! Good job!")
+                break
+            else:
+                print(f"You guessed the word in {6-attempts} attempts.")
+                break
         else:
             attempts -= 1
-            print(get_word_progress(chosen, guess))
-    print(f"Sorry, you ran out of guesses. The word was {chosen}.")
+            if attempts > 0:
+                print(get_word_progress(chosen, guess))
+            else:
+                print(f"Sorry, you ran out of guesses. The word was {chosen}.")
 
 
 if __name__ == "__main__":
